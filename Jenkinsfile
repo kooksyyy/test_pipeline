@@ -1,8 +1,6 @@
 pipeline {
     agent any
 
-    // Replace 'your_email@example.com' with the actual email address
-    environment {
         NOTIFY_EMAIL = 'kookaiisidro01@gmail.com'
     }
 
@@ -19,10 +17,10 @@ pipeline {
             }
             post {
                 success {
-                    emailext body: 'Unit and Integration Tests Passed!', subject: 'Unit & Integration Tests - $JOB_NAME - Success', to: '$NOTIFY_EMAIL', attachers: [fingerprint: true, body: 'Test Logs', filename: 'test_logs.xml' /* Replace with your log file format */]
+                    emailext body: 'Unit and Integration Tests Passed!', subject: 'Unit & Integration Tests - $JOB_NAME - Success', to: '$NOTIFY_EMAIL', attachers: [fingerprint: true, body: 'Test Logs', filename: 'test_logs.xml']
                 }
                 failure {
-                    emailext body: 'Unit and Integration Tests Failed!', subject: 'Unit & Integration Tests - $JOB_NAME - Failure', to: '$NOTIFY_EMAIL', attachers: [fingerprint: true, body: 'Test Logs', filename: 'test_logs.xml' /* Replace with your log file format */]
+                    emailext body: 'Unit and Integration Tests Failed!', subject: 'Unit & Integration Tests - $JOB_NAME - Failure', to: '$NOTIFY_EMAIL', attachers: [fingerprint: true, body: 'Test Logs', filename: 'test_logs.xml']
                 }
             }
         }
